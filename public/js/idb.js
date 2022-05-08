@@ -35,14 +35,14 @@ function saveRecord(record){
 function uploadBudget(){
     const transaction = db.transaction(['new_budget'], 'readwrite');
 
-    const budgetObjectStore = transaction.objectSore('new_budget');
+    const budgetObjectStore = transaction.objectStore('new_budget');
 
     const getAll = budgetObjectStore.getAll();
 
     // upon successful .getAll()
     getAll.onsuccess = function(){
         if(getAll.result.length > 0){
-            fetch('/api/budgets', {
+            fetch('/api/transaction', {
                 method: 'POST',
                 body: JSON.stringify(getAll.result),
                 headers: {
